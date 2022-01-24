@@ -1,23 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Usual from "./Usual";
+import RenderProp from "./RenderProp/RenderProp";
+import Container from "./Try/Container";
+import Container1 from "./TryRenderProp/Container1";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <RenderProp></RenderProp> */}
+      {/* <Usual></Usual> */}
+      {/* <Container></Container> */}
+      <Container1></Container1>
     </div>
   );
 }
