@@ -1,14 +1,20 @@
-import Usual from "./Usual";
-import RenderProp from "./RenderProp/RenderProp";
-import Container from "./Try/Container";
-import Container1 from "./TryRenderProp/Container1";
+import { SplitScreen } from "./SplitScreen";
+
+const Left = () => {
+  return <h1 style={{ backgroundColor: "red" }}>Leftside</h1>;
+};
+
+const Right = () => {
+  return <h1 style={{ backgroundColor: "green" }}>Rightside</h1>;
+};
+
 function App() {
   return (
-    <div className="App">
-      {/* <RenderProp></RenderProp> */}
-      {/* <Usual></Usual> */}
-      {/* <Container></Container> */}
-      <Container1></Container1>
+    <div>
+      <SplitScreen rightWeight={2} leftWeight={4}>
+        <Left />
+        <Right />
+      </SplitScreen>
     </div>
   );
 }
