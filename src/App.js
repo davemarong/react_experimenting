@@ -1,20 +1,74 @@
-import { SplitScreen } from "./SplitScreen";
-
-const Left = () => {
-  return <h1 style={{ backgroundColor: "red" }}>Leftside</h1>;
-};
-
-const Right = () => {
-  return <h1 style={{ backgroundColor: "green" }}>Rightside</h1>;
-};
+import { LargePersonListItem } from "./LargePersonListItem";
+import { LargeProductListItem } from "./LargeProductListItem";
+import { RegularList } from "./RegularList";
+import { SmallPersonListItem } from "./SmallPersonListItem";
+import { SmallProductListItem } from "./SmallProductListItem";
 
 function App() {
+  const people = [
+    {
+      name: "John Doe",
+      age: 54,
+      hairColor: "brown",
+      hobbies: ["swimming", "bicycling", "video games"],
+    },
+    {
+      name: "Brenda Smith",
+      age: 33,
+      hairColor: "black",
+      hobbies: ["golf", "mathematics"],
+    },
+    {
+      name: "Jane Garcia",
+      age: 27,
+      hairColor: "blonde",
+      hobbies: ["biology", "medicine", "gymnastics"],
+    },
+  ];
+
+  const products = [
+    {
+      name: "Flat-Screen TV",
+      price: "$300",
+      description: "Huge LCD screen, a great deal",
+      rating: 4.5,
+    },
+    {
+      name: "Basketball",
+      price: "$10",
+      description: "Just like the pros use",
+      rating: 3.8,
+    },
+    {
+      name: "Running Shoes",
+      price: "$120",
+      description: "State-of-the-art technology for optimum running",
+      rating: 4.2,
+    },
+  ];
+
   return (
     <div>
-      <SplitScreen rightWeight={2} leftWeight={4}>
-        <Left />
-        <Right />
-      </SplitScreen>
+      <RegularList
+        allListData={people}
+        propName="person"
+        itemComp={SmallPersonListItem}
+      />
+      <RegularList
+        allListData={people}
+        propName="person"
+        itemComp={LargePersonListItem}
+      />
+      <RegularList
+        allListData={products}
+        propName="product"
+        itemComp={SmallProductListItem}
+      />
+      <RegularList
+        allListData={products}
+        propName="product"
+        itemComp={LargeProductListItem}
+      />
     </div>
   );
 }
