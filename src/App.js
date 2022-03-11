@@ -1,74 +1,103 @@
-import { LargePersonListItem } from "./LargePersonListItem";
-import { LargeProductListItem } from "./LargeProductListItem";
-import { RegularList } from "./RegularList";
-import { SmallPersonListItem } from "./SmallPersonListItem";
-import { SmallProductListItem } from "./SmallProductListItem";
+import { useState } from "react";
+
+import { ControlledOnboardingFlow } from "./ControlledOnboardingFlow";
+
+const StepOne = ({ nextStep, onFinish }) => {
+  return (
+    <>
+      <h1>Step 1</h1>
+      <button
+        onClick={() => {
+          nextStep({ stepOne: "Dave" });
+        }}
+      >
+        Next
+      </button>
+    </>
+  );
+};
+const StepTwo = ({ nextStep, onFinish }) => {
+  return (
+    <>
+      <h1>Step 2</h1>
+      <button
+        onClick={() => {
+          nextStep({ stepTwo: 100 });
+        }}
+      >
+        Next
+      </button>
+    </>
+  );
+};
+const StepThree = ({ nextStep, onFinish }) => {
+  return (
+    <>
+      <h1>Step 3</h1>
+      <button
+        onClick={() => {
+          nextStep({ stepThree: "Skien" });
+        }}
+      >
+        Next
+      </button>
+    </>
+  );
+};
+const StepFour = ({ nextStep, onFinish }) => {
+  return (
+    <>
+      <h1>Step 4</h1>
+      <button
+        onClick={() => {
+          nextStep({ stepFour: "Adele" });
+        }}
+      >
+        Next
+      </button>
+    </>
+  );
+};
+const StepFive = ({ nextStep, onFinish }) => {
+  return (
+    <>
+      <h1>Step 5</h1>
+      <button
+        onClick={() => {
+          onFinish({ stepFive: "Iselin" });
+        }}
+      >
+        Finish
+      </button>
+    </>
+  );
+};
 
 function App() {
-  const people = [
-    {
-      name: "John Doe",
-      age: 54,
-      hairColor: "brown",
-      hobbies: ["swimming", "bicycling", "video games"],
-    },
-    {
-      name: "Brenda Smith",
-      age: 33,
-      hairColor: "black",
-      hobbies: ["golf", "mathematics"],
-    },
-    {
-      name: "Jane Garcia",
-      age: 27,
-      hairColor: "blonde",
-      hobbies: ["biology", "medicine", "gymnastics"],
-    },
-  ];
+  const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  const [onboardingFlow, setOnboardingFlow] = useState({});
 
-  const products = [
-    {
-      name: "Flat-Screen TV",
-      price: "$300",
-      description: "Huge LCD screen, a great deal",
-      rating: 4.5,
-    },
-    {
-      name: "Basketball",
-      price: "$10",
-      description: "Just like the pros use",
-      rating: 3.8,
-    },
-    {
-      name: "Running Shoes",
-      price: "$120",
-      description: "State-of-the-art technology for optimum running",
-      rating: 4.2,
-    },
-  ];
-
+  const nextStep = (stepData) => {
+    setCurrentStepIndex(currentStepIndex + 1);
+    setOnboardingFlow({ ...onboardingFlow, ...stepData });
+  };
+  const onFinish = (stepData) => {
+    setOnboardingFlow({ ...onboardingFlow, ...stepData });
+    alert("You are done, dude!");
+  };
+  console.log(onboardingFlow);
   return (
     <div>
-      <RegularList
-        allListData={people}
-        propName="person"
-        itemComp={SmallPersonListItem}
-      />
-      <RegularList
-        allListData={people}
-        propName="person"
-        itemComp={LargePersonListItem}
-      />
-      <RegularList
-        allListData={products}
-        propName="product"
-        itemComp={SmallProductListItem}
-      />
-      <RegularList
-        allListData={products}
-        propName="product"
-        itemComp={LargeProductListItem}
-      />
+      <ControlledOnboardingFlow
+        currentStepIndex={currentStepIndex}
+        nextStep={nextStep}
+      >
+        <StepOne />
+        <StepTwo />
+        <StepThree />
+        <StepFour />
+        <StepFive onFinish={onFinish} />
+      </ControlledOnboardingFlow>
     </div>
   );
 }
