@@ -1,21 +1,31 @@
-import { SplitScreen } from "./SplitScreen";
+import { useState } from "react";
+import CorrectlyGuessedPokemon from "./CorrectlyGuessedPokemon";
+import DisplayPokemon from "./DisplayPokemon";
+import FindPokemon from "./FindPokemon";
+import UserGuess from "./UserGuess";
 
-const Left = () => {
-  return <h1>Left</h1>;
-};
-const Right = () => {
-  return <h1>Right</h1>;
-};
+const App = () => {
+  const [id, setId] = useState(1);
+  const [pokemon, setPokemon] = useState("No pokemon");
+  const [pokemonGuessed, setPokemonGuessed] = useState([]);
+  const [userAnswer, setUserAnswer] = useState();
 
-function App() {
+  const UserGuessProps = {
+    pokemon: pokemon,
+    setPokemonGuessed: setPokemonGuessed,
+    pokemonGuessed: pokemonGuessed,
+    userAnswer: userAnswer,
+    setUserAnswer: setUserAnswer,
+  };
+
   return (
-    <div>
-      <SplitScreen rightSize={3} leftSize={1}>
-        <Left />
-        <Right />
-      </SplitScreen>
-    </div>
+    <>
+      <FindPokemon id={id} setId={setId} setPokemon={setPokemon} />
+      <DisplayPokemon pokemon={pokemon} />
+      <UserGuess {...UserGuessProps} />
+      <CorrectlyGuessedPokemon pokemonGuessed={pokemonGuessed} />
+    </>
   );
-}
+};
 
 export default App;
