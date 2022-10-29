@@ -1,31 +1,21 @@
-import { useState } from "react";
-import CorrectlyGuessedPokemon from "./CorrectlyGuessedPokemon";
-import DisplayPokemon from "./DisplayPokemon";
-import FindPokemon from "./FindPokemon";
-import UserGuess from "./UserGuess";
-
-const App = () => {
-  const [id, setId] = useState(1);
-  const [pokemon, setPokemon] = useState("No pokemon");
-  const [pokemonGuessed, setPokemonGuessed] = useState([]);
-  const [userAnswer, setUserAnswer] = useState();
-
-  const UserGuessProps = {
-    pokemon: pokemon,
-    setPokemonGuessed: setPokemonGuessed,
-    pokemonGuessed: pokemonGuessed,
-    userAnswer: userAnswer,
-    setUserAnswer: setUserAnswer,
-  };
-
+function App() {
   return (
-    <>
-      <FindPokemon id={id} setId={setId} setPokemon={setPokemon} />
-      <DisplayPokemon pokemon={pokemon} />
-      <UserGuess {...UserGuessProps} />
-      <CorrectlyGuessedPokemon pokemonGuessed={pokemonGuessed} />
-    </>
+    <div className="App">
+      <header className="App-header">
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
   );
-};
+}
 
 export default App;
